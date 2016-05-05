@@ -1,0 +1,92 @@
+<div>
+    <!--Screen title-->
+    <div class="page-head text-center">
+        <h2>Roaster List</h2>
+    </div>{{data.length}}
+
+    <style>
+        table {
+            width:75%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table#t01 tr:nth-child(odd) {
+           background-color:#fff;
+        }
+        table#t01 th    {
+            background-color: black;
+            color: white;
+            table-layout: center;
+        }
+    </style>
+
+    <div>
+
+        <div class="cl-mcont">
+
+            <div class="row">
+
+                <!-- List View -->
+                <div class="col-sm-12 col-md-12">
+                    <div class="block-flat">
+                        <div class="content">
+                            <!-- <div ng-show="emp.length"> -->
+                                <table class="no-border" id="empRoasterList" align="center">
+                                    <thead class="no-border">
+                                    <tr>
+
+                                        <th class="text-center">EmpID</th>
+                                        <th class="text-center">EmpName</th>
+                                        <th class="text-center">LineManager</th>
+                                        <th class="text-center">Process</th>
+                                        <th class="text-center">Address</th>
+                                        <th class="text-center">Mobile No</th>
+                                        <th class="text-center">Lindline No</th>
+                                        <th class="text-center">Location</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">In Time</th>
+                                        <th class="text-center">Out Time</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="no-border-x no-border-y" ng-show="empRoasterList !== null">
+                                    <tr ng-repeat="emp in empRoasterList ">
+                                        <!-- using one-time binding -->
+                                        <td class="text-center" class="empID">{{::emp.empID | limitTo:60}}</td>
+                                        <td class="text-center" class="empName">{{::emp.empName | limitTo:60}}</td>
+                                        <td class="text-center" class="managerName">{{::emp.managerName | limitTo:60}}</td>
+                                        <td class="text-center" class="process">{{::emp.process | limitTo:60}}</td>
+                                        <td class="text-center" class="address">{{::emp.address | limitTo:60}}</td>
+                                        <td class="text-center" class="mobileNo">{{::emp.mobileNo | limitTo:60}}</td>
+                                        <td class="text-center" class="landline">{{::emp.landline | limitTo:60}}</td>
+                                        <td class="text-center" class="empLocation">{{::emp.empLocation | limitTo:60}}</td>
+                                        <td class="text-center" class="date">{{::emp.date | limitTo:60}}</td>
+                                        <td class="text-center" class="inTime">{{::emp.inTime | limitTo:60}}</td>
+                                        <td class="text-center" class="outTime">{{::emp.outTime | limitTo:60}}</td> 
+                                        
+                                        <!-- <td class="text-center" class="showEmpDetails">
+                                            <a  ng-click="showEmpDetails(emp)" class="label label-warning"><i class="fa fa-eye showEmpDetailsLink"></i> View</a>
+                                        </td> -->
+                                        <!-- <td class="text-center" class="priority"><img style="width: 20px; height: 20px" ng-src="/assessment/assessment/views/section_47.jpg"  ng-mouseover="getAlertDescription(emp)" title="{{description}}"  ng-show="showAlert(emp)" class="alertImg"/></td> -->
+                                    </tr>
+                                    </tbody>
+                                </table>
+                           <!--  </div> -->
+                            <!-- <div ng-show="!emp.length">
+                                <p class="text-info"> Sorry - No Records Found </p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

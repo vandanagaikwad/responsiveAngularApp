@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <title>SampleApp</title>
+  <link href="favicon.png" rel="icon" type="image/png">
+  <link href='http://fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="//cdn.jsdelivr.net/ionicons/1.4.1/css/ionicons.min.css" rel="stylesheet">
+  <link href="stylesheets/animate.css" rel="stylesheet">
+  <link href="stylesheets/style.css" rel="stylesheet">
+ <!--  <link href="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://jdewit.github.io/bootstrap-timepicker/css/bootstrap-timepicker.min.css"> -->
+
+  <style>html { margin: 0px 100px; font-size: 12px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1119/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1119/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1119/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.3.1119/styles/kendo.dataviz.default.min.css" />
+
+    <script src="http://cdn.kendostatic.com/2014.3.1119/js/jquery.min.js"></script>
+    <script src="http://cdn.kendostatic.com/2014.3.1119/js/kendo.all.min.js"></script>
+
+</head>
+<body>
+<div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top" role="navigation" bs-navbar>
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">
+      <span>Sample<strong>App</strong></span>
+    </a>
+  </div>
+  <ul class="nav navbar-nav">
+    <li data-match-route="/$"><a href="/">Home</a></li>
+    <li data-match-route="/addRoaster" ng-if="currentUser"><a href="/addRoaster">AddRoaster</a></li>
+    <li data-match-route="/viewRoasterList" ng-if="currentUser"><a href="/viewRoasterList">ViewRoaster</a></li>
+  </ul>
+  <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
+    <li data-match-route="/login"><a href="/login">Login</a></li>
+    <li data-match-route="/signup"><a href="/signup">Sign up</a></li>
+  </ul>
+  <ul class="nav navbar-nav pull-right" ng-if="currentUser">
+    <li class="navbar-text" ng-bind="currentUser.email"></li>
+    <li data-match-route="/"><a href="/" ng-click="logout()" >Logout</a></li>
+  </ul>
+</div>
+
+<div ng-view class="{{pageClass}}"></div>
+
+<script src="vendor/angular.js"></script>
+<script src="vendor/angular-strap.js"></script>
+<script src="vendor/angular-strap.tpl.js"></script>
+<script src="vendor/angular-messages.js"></script>
+<script src="vendor/angular-resource.js"></script>
+<script src="vendor/angular-route.js"></script>
+<script src="vendor/angular-animate.js"></script>
+<script src="vendor/moment.min.js"></script>
+
+<script src="app.js"></script>
+<script src="filters/fromNow.js"></script>
+<script src="directives/uniqueEmail.js"></script>
+<script src="directives/passwordStrength.js"></script>
+<script src="controllers/main.js"></script>
+<script src="controllers/detail.js"></script>
+<script src="controllers/add.js"></script>
+<script src="controllers/navbar.js"></script>
+<script src="controllers/login.js"></script>
+<script src="controllers/signup.js"></script>
+<script src="controllers/viewList.js"></script>
+<script src="models/empModel.js"></script>
+<script src="services/auth.js"></script>
+<script src="services/emp.js"></script>
+<script src="services/principalService.js"></script>
+
+</body>
+</html>
