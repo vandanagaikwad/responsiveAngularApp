@@ -16,15 +16,7 @@ var Post = require('./../models/Posts');
 var Comment = require('./../models/Comments');
 
 router.get('/posts', function(req, res, next) {
-	// var posts = [
-	//   {title: 'post 1', upvotes: 5},
-	//   {title: 'post 2', upvotes: 2},
-	//   {title: 'post 3', upvotes: 15},
-	//   {title: 'post 4', upvotes: 9},
-	//   {title: 'post 5', upvotes: 4}
-	// ];
-	// res.json(posts);
-  Post.find(function(err, posts){
+	Post.find(function(err, posts){
     if(err){ return next(err); }
 
     res.json(posts);
@@ -33,7 +25,9 @@ router.get('/posts', function(req, res, next) {
 
 
 router.post('/posts', function(req, res, next) {
-  var post = new Post(req.body);
+  var post = new Post();
+  post.upvotes = req.body.upvotes;
+  post.title = req.body.title;
 
   post.save(function(err, post){
     if(err){ return next(err); }
@@ -43,7 +37,7 @@ router.post('/posts', function(req, res, next) {
 });
 
 
-//getting the sible post from db and attaching to req object with following middleware
+//getting the single post from db and attaching to req object with following middleware
 router.param('post', function(req, res, next, id) {
   var query = Post.findById(id);
 
@@ -59,6 +53,7 @@ router.param('post', function(req, res, next, id) {
 //getting single post
 //Use the populate() function to retrieve comments along with posts:
 router.get('/posts/:post', function(req, res, next) {
+	//console.log(req.params.post);
   req.post.populate('comments', function(err, post) {
     if (err) { return next(err); }
 
@@ -88,6 +83,17 @@ router.post('/posts/:post/comments', function(req, res, next) {
 
       res.json(comment);
     });
+  });
+});
+
+router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
+  var comment = new Comment(req.body);
+  comment.upvote = req.body.upvotes;
+ // console.log(req.body);
+  req.post.comment(function(err, post){
+    if (err) { return next(err); }
+
+    res.json(post);
   });
 });
 
